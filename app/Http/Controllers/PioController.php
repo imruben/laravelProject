@@ -37,13 +37,20 @@ class PioController extends Controller
      */
     public function store(Request $request)
     {
+
         $validated = $request->validate([
-            'message' => 'required|string|max:255'
+            'message' => 'required|string'
         ]);
 
         $request->user()->pios()->create($validated);
         return redirect(route("pios.index"));
     }
+
+    public function getTimestampPost(Pio $pio)
+    {
+        return $pio->created_at->format('j M Y, g:i a');
+    }
+
 
     /**
      * Display the specified resource.

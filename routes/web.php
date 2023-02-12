@@ -32,7 +32,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::resource('pios', PioController::class)
-    ->only(['index', 'store', 'edit', 'update'])
+    ->only(['index', 'store', 'edit', 'update', 'getTimestampPost'])
     ->middleware(['auth']);
 
 require __DIR__ . '/auth.php';

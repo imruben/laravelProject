@@ -1,0 +1,8 @@
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&family=Goudy+Bookletter+1911&family=Montserrat&family=Roboto+Mono&display=swap");
+
+body {
+    color: white;
+    background-color: rgb(31 41 55);
+    font-family: "Comfortaa";
+    line-height: 1.4;
+}

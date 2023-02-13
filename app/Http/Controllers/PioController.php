@@ -92,8 +92,12 @@ class PioController extends Controller
      * @param  \App\Models\Pio  $pio
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Pio $pio)
+    public function destroy($id)
     {
-        //
+        Pio::find($id)->delete($id);
+
+        return response()->json([
+            'success' => 'Pio eliminado correctamente!'
+        ]);
     }
 }

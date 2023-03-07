@@ -15,6 +15,8 @@
     <link rel="shortcut icon" href="{{url('/images/favicon.ico')}}" type=" image/x-icon">
 
     <!-- Scripts -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.3/flowbite.min.css" rel="stylesheet" />
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 

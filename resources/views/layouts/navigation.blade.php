@@ -15,6 +15,7 @@
                     <x-nav-link :href="route('pios.index')" :active="request()->routeIs('pios.index')">
                         {{ __('Pios') }}
                     </x-nav-link>
+
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>

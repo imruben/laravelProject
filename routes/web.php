@@ -35,6 +35,10 @@ Route::resource('pios', PioController::class)
     ->only(['index', 'store', 'edit', 'update', 'getTimestampPost'])
     ->middleware(['auth', 'verified']);
 
+Route::resource('posts', PostController::class)
+    ->only(['index', 'store', 'edit', 'update', 'getTimestampPost'])
+    ->middleware(['auth', 'verified']);
+
 Route::delete('pios/{id}', [PioController::class, 'destroy'])->name('pio.destroy');
 
 require __DIR__ . '/auth.php';

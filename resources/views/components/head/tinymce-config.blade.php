@@ -4,32 +4,24 @@
 
     <script>
         tinymce.init({
+            language: 'es',
             content_css: "{{asset('/css/tinymce.css')}}",
             promotion: false,
             menubar: true,
             selector: 'textarea#message', // Replace this CSS selector to match the placeholder element for TinyMCE
-            plugins: 'code table lists image responsivefilemanager',
-            toolbar: 'undo redo | image |  bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code | responsivefilemanager ',
+            plugins: 'code table lists image',
+            toolbar: 'undo redo | image responsivefilemanager |  bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code ',
+            // gestión de archivos
+            automatic_uploads: true,
+            images_reuse_filename: true,
+            images_upload_url: "/uploads/",
+            external_filemanager_path: "/filemanager/",
+            images_upload_credentials: true,
+            filemanager_title: "Gestor de archivos",
+            // file_picker_types: "file image media",
             external_plugins: {
-                "responsivefilemanager": "{{ asset('/tinymce/js/tinymce/plugins/responsivefilemanager/plugin.min.js')}}",
-                "filemanager": "{{ asset('/tinymce/js/tinymce/plugins/responsivefilemanager/plugin.min.js')}}"
+                responsivefilemanager: "/filemanager/plugin.min.6.0.js",
             },
-            file_picker_callback: function(callback, value, meta) {
-                if (meta.filetype == 'image') {
-                    var input = document.getElementById('my-file');
-                    input.click();
-                    input.onchange = function() {
-                        var file = input.files[0];
-                        var reader = new FileReader();
-                        reader.onload = function(e) {
-                            callback(e.target.result, {
-                                alt: file.name
-                            });
-                        };
-                        reader.readAsDataURL(file);
-                    };
-                }
-            }
         });
     </script>
 </div>

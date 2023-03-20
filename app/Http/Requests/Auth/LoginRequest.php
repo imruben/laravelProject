@@ -21,11 +21,13 @@ class LoginRequest extends FormRequest
      */
     protected function prepareForValidation()
     {
+        // dd($this->input('useremail'));
+
         $this->loginField = filter_var(
-            $this->input('login'),
+            $this->input('useremail'),
             FILTER_VALIDATE_EMAIL
         ) ? 'email' : 'username';
-        $this->loginValue = $this->input('login');
+        $this->loginValue = $this->input('useremail');
         $this->merge([$this->loginField => $this->loginValue]);
     }
 

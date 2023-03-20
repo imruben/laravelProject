@@ -13,13 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('post', function (Blueprint $table) {
+        Schema::create('ratings', function (Blueprint $table) {
             $table->id();
-            $table->string('id_user');
-            $table->string('title');
-            $table->string('content');
-            $table->timestamp('created_at');
-            $table->timestamp('modified_at')->nullable();
+            $table->string('rating');
+            $table->foreignId('user_id')->cascadeOnDelete();
+            $table->foreignId('post_id')->cascadeOnDelete();
+            $table->timestamps();
         });
     }
 
@@ -30,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('post');
+        Schema::dropIfExists('rating');
     }
 };

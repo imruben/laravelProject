@@ -19,7 +19,7 @@
 
         <div>
             <x-input-label class="text-base mb-2" for="avatar" :value="__('Selecciona un avatar')" />
-            <img src="/uploads/avatars/{{$user->avatar}}" class="w-35 h-35 rounded-lg mb-5" />
+            <img src="{{$user->getAvatar()}}" class="w-35 h-35 rounded-lg mb-5" />
             <input class="text-sm text-white" type="file" name="avatar" id="avatar">
             <x-input-error class=" mt-2" :messages="$errors->get('avatar')" />
         </div>

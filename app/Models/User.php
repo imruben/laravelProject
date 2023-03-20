@@ -13,6 +13,7 @@ class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+
     /**
      * The attributes that are mass assignable.
      *
@@ -23,6 +24,23 @@ class User extends Authenticatable implements MustVerifyEmail
         'email',
         'password',
     ];
+
+
+    public function post()
+    {
+        return $this->hasMany(Post::class);
+    }
+
+    public function comment()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+    public function rating()
+    {
+        return $this->hasMany(Rating::class);
+    }
+
 
     /**
      * The attributes that should be hidden for serialization.
@@ -43,8 +61,21 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
-    public function pios()
+    public function getAvatar()
     {
-        return $this->hasMany(Pio::class);
+        if (str_contains($this->avatar, 'http')) {
+            return $this->avatar;
+        } else {
+            return '/uploads/avatars/' . $this->avatar;
+        }
+    }
+
+    public function getNumberofPosts()
+    {
+        return $this->post()->count();
+    }
+    public function getNumberofComments()
+    {
+        return $this->comment()->count();
     }
 }

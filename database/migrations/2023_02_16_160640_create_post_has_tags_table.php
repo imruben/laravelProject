@@ -11,7 +11,14 @@ return new class extends Migration
      *
      * @return void
      */
-
+    public function up()
+    {
+        Schema::create('post_has_tags', function (Blueprint $table) {
+            $table->id();
+            // $table->foreignId('post_id')->constrained()->cascadeOnDelete();
+            // $table->foreignId('tag_id')->constrained()->cascadeOnDelete();
+        });
+    }
     /**
      * Reverse the migrations.
      *

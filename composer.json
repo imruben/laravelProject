@@ -11,7 +11,8 @@
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
-        "laravel/ui": "^4.2"
+        "laravel/ui": "^4.2",
+        "xvladqt/faker-lorem-flickr": "^1.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
@@ -23,7 +24,9 @@
         "laravel/sail": "^1.0.1",
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^6.1",
+        "ottaviano/faker-gravatar": "^0.2.0",
         "phpunit/phpunit": "^9.5.10",
+        "smknstd/fakerphp-picsum-images": "^1.0",
         "spatie/laravel-ignition": "^1.0"
     },
     "autoload": {

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Pio;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 
-class PioController extends Controller
+class CommentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,10 +14,9 @@ class PioController extends Controller
      */
     public function index()
     {
-        return view('pios.index', [
-            'pios' => Pio::with('user')->latest()->get(),
-        ]);
+        //
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -37,28 +36,16 @@ class PioController extends Controller
      */
     public function store(Request $request)
     {
-
-        $validated = $request->validate([
-            'message' => 'required|string'
-        ]);
-
-        $request->user()->pios()->create($validated);
-        return redirect(route("pios.index"));
+        //
     }
-
-    public function getTimestampPost(Pio $pio)
-    {
-        return $pio->created_at->format('j M Y, g:i a');
-    }
-
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Pio  $pio
+     * @param  \App\Models\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function show(Pio $pio)
+    public function show(Comment $comment)
     {
         //
     }
@@ -66,22 +53,22 @@ class PioController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Pio  $pio
+     * @param  \App\Models\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function edit(Pio $pio)
+    public function edit(Comment $comment)
     {
-        $this->autorize('update', $pio);
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Pio  $pio
+     * @param  \App\Models\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pio $pio)
+    public function update(Request $request, Comment $comment)
     {
         //
     }
@@ -89,15 +76,11 @@ class PioController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Pio  $pio
+     * @param  \App\Models\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Comment $comment)
     {
-        Pio::find($id)->delete($id);
-
-        return response()->json([
-            'success' => 'Pio eliminado correctamente!'
-        ]);
+        //
     }
 }

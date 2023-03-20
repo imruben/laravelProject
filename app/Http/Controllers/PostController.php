@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
+use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -11,9 +14,13 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        return view('posts.index', [
+            'posts' => Post::where('user_id', '!=',  $request->user()->id)->orderBy('created_at', 'desc')->get(),
+            'user' => Auth::user(),
+            'comments' => Comment::all(),
+        ]);
     }
 
     /**
@@ -34,7 +41,25 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'content' => 'required|string'
+        ]);
+
+        $post = new Post;
+        // $post->user_id = Auth::user()->id;
+        $post->user_id = $request->user()->id;
+        $post->title = 'titulo';
+        $post->content = $validated['content'];
+        // $post->created_at = now();
+        $post->save();
+
+        // $post->$request->user()->post()->create($validated);
+        return redirect(route("posts.index"));
+    }
+
+    public function getTimestampPost(Post $post)
+    {
+        return $post->created_at->format('j M Y, g:i a');
     }
 
     /**
@@ -54,9 +79,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Post $post)
     {
-        //
+        $this->autorize('update', $post);
     }
 
     /**
@@ -79,6 +104,10 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Post::find($id)->delete($id);
+
+        return response()->json([
+            'success' => 'Post eliminado correctamente!'
+        ]);
     }
 }

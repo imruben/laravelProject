@@ -7,8 +7,8 @@
 
         <!-- Email Address -->
         <div>
-            <x-input-label for="email" :value="__('Email or Username')" />
-            <x-text-input id="username" class="block mt-1 w-full" type="text" name="username" :value="old('username') ?: old('email')" required autofocus autocomplete="username" />
+            <x-input-label for="useremail" :value="__('Email or Username')" />
+            <x-text-input id="useremail" class="block mt-1 w-full" type="text" name="useremail" :value="old('username') ?: old('email')" required autofocus autocomplete="username" />
             <x-input-error :messages="$errors->get('username') ?: $errors->get('email')" class="mt-2" />
         </div>
 
@@ -43,7 +43,7 @@
 
         </div>
         <div class="flex items-center justify-center mt-4">
-            <a href="{{ route('register') }}" class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">Click here to register</a>
+            <a href="{{ route('register') }}" class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">{{__('Click here to register')}}</a>
         </div>
     </form>
 </x-guest-layout>

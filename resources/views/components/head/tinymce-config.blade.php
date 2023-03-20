@@ -7,8 +7,11 @@
             language: 'es',
             content_css: "{{asset('/css/tinymce.css')}}",
             promotion: false,
-            menubar: true,
-            selector: 'textarea#message', // Replace this CSS selector to match the placeholder element for TinyMCE
+            menubar: false,
+            selector: 'textarea#postcontent', // Replace this CSS selector to match the placeholder element for TinyMCE
+            // auto_focus: 'element1',
+            placeholder: 'Escribe tu pio aquí...',
+            height: 250,
             plugins: 'code table lists image',
             toolbar: 'undo redo | image responsivefilemanager |  bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code ',
             // gestión de archivos

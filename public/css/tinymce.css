@@ -2,7 +2,12 @@
 
 body {
     color: white;
-    background-color: rgb(31 41 55);
+    /* background-color: rgb(31 41 55); */
+    background-color: #20354b;
     font-family: "Comfortaa";
     line-height: 1.4;
+}
+
+.mce-content-body[data-mce-placeholder]:not(.mce-visualblocks)::before {
+    color: rgb(185, 177, 177);
 }

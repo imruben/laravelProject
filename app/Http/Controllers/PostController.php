@@ -19,7 +19,6 @@ class PostController extends Controller
      */
     public function index(Request $request)
     {
-
         return view('posts.index', [
             'posts' => Post::where('user_id', '!=',  $request->user()->id)->orderBy('created_at', 'desc')->get(),
             'user' => Auth::user(),

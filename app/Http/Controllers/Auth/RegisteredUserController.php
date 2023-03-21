@@ -12,6 +12,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use App\Models\Post;
+use App\Models\Comment;
+use App\Models\Rating;
 
 class RegisteredUserController extends Controller
 {
@@ -42,6 +45,7 @@ class RegisteredUserController extends Controller
             'username' => $request->username,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'rol_id' => 2,
         ]);
 
         event(new Registered($user));
@@ -49,5 +53,15 @@ class RegisteredUserController extends Controller
         Auth::login($user);
 
         return redirect(RouteServiceProvider::HOME);
+    }
+
+    public function destroy(User $user)
+    {
+
+        $user->delete();
+        Post::where('user_id', $user->id)->delete();
+        Comment::where('user_id', $user->id)->delete();
+        Rating::where('user_id', $user->id)->delete();
+        return redirect()->route('admin.userspanel');
     }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PioController;
@@ -7,6 +8,9 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\RatingController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\UsersPanelController;
+use App\Models\User;
+use Illuminate\Support\Facades\Artisan;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,7 +38,6 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::post('comments/{id}', [CommentController::class, 'store'])->name('comments.store');
     Route::delete('posts/{id}', [PostController::class, 'destroy'])->name('post.destroy');
 });
-
 Route::resource('userprofile', UserProfileController::class)
     ->only(['index', 'store', 'edit', 'update', 'show'])
     ->middleware(['auth', 'verified']);
@@ -42,6 +45,19 @@ Route::resource('userprofile', UserProfileController::class)
 Route::resource('posts', PostController::class)
     ->only(['index', 'show', 'store', 'edit', 'update', 'getTimestampPost'])
     ->middleware(['auth', 'verified']);
+
+Route::get('migrate', function () {
+    Artisan::call('migrate:fresh', [
+        '--seed' => true,
+    ]);
+
+    return redirect()->route('posts.index');
+});
+
+// Rutas administrador
+Route::get('userspanel', [UsersPanelController::class, 'index'])->name('admin.userspanel')->middleware('auth');
+Route::delete('userspanel/delete/{user}', [RegisteredUserController::class, 'destroy'])->name('admin.userspanel.destroy')->middleware('auth');
+
 
 
 require __DIR__ . '/auth.php';

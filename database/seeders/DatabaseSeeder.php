@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             RatingSeeder::class,
             TagSeeder::class,
             PostHasTagsSeeder::class,
+            RolesSeeder::class,
         ]);
     }
 }

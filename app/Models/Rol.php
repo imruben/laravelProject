@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Tag extends Model
+class Rol extends Model
 {
     use HasFactory;
 
-    function PostHasTags()
+    public function user()
     {
-        return $this->hasMany(Tag::class);
+        return $this->belongsTo(User::class);
     }
 }

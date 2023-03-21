@@ -19,15 +19,24 @@
                     <x-nav-link :href="route('userprofile.index')" :active="request()->routeIs('userprofile.index')">
                         {{ __('Mi perfil') }}
                     </x-nav-link>
+
+                    @if(Auth::user()->getRolId() == 1)
+                    <x-nav-link :href="route('admin.userspanel')" :active="request()->routeIs('admin.userspanel')">
+                        <span class="material-icons-outlined mr-2">
+                            admin_panel_settings
+                        </span> {{ __('Panel usuarios') }}
+                    </x-nav-link>
+                    @endif
                 </div>
+
             </div>
 
-
+            @if(Auth::user()->getRolId() == 1)
+            <a href="/migrate" class="hover:cursor-pointer self-center text-gray-900 bg-gradient-to-r from-red-200 via-red-300 to-yellow-200 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-red-100 dark:focus:ring-red-400 font-medium rounded-lg text-xs px-2 py-1 text-center h-2/4">MIGRATE BD (CON DATOS NUEVOS)</a>
+            @endif
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ml-6">
-                <div class=" mr-5">
-                    <x-darkmode-toggle />
-                </div>
+
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
@@ -75,12 +84,6 @@
 
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
-        <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('posts.index')" :active="request()->routeIs('posts.index')">
-                {{ __('Mis posts') }}
-            </x-responsive-nav-link>
-        </div>
-
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600">
             <div class="px-4">

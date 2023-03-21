@@ -40,7 +40,20 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(Rating::class);
     }
+    public function rol()
+    {
+        return $this->hasOne(Rol::class);
+    }
 
+    public function getRolId()
+    {
+        return Rol::find($this->rol_id)->id;
+    }
+
+    public function getRol()
+    {
+        return Rol::find($this->rol_id)->description;
+    }
 
     /**
      * The attributes that should be hidden for serialization.

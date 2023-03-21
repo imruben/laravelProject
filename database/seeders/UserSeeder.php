@@ -21,6 +21,7 @@ class UserSeeder extends Seeder
         User::factory()->create([
             'username' => "pepeAdmin",
             'email' => "pepe@admin.pepe",
+            'rol_id' => 1,
             'avatar' => 'default.jpg',
             'email_verified_at' => now(),
             'password' => Hash::make('1234'), // password

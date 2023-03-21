@@ -20,6 +20,8 @@ class DatabaseSeeder extends Seeder
             PostSeeder::class,
             CommentSeeder::class,
             RatingSeeder::class,
+            TagSeeder::class,
+            PostHasTagsSeeder::class,
         ]);
     }
 }

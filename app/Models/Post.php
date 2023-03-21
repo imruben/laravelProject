@@ -23,6 +23,21 @@ class Post extends Model
     {
         return $this->hasMany(Rating::class);
     }
+    function posthastags()
+    {
+        return $this->hasMany(PostHasTags::class);
+    }
+    function tagPostsIdsArray()
+    {
+        $tags = $this->posthastags()->get();
+        $tagsIds = [];
+        foreach ($tags as $tag) {
+            $tagsIds[] = $tag->tag_id;
+        }
+        return $tagsIds;
+    }
+
+
 
     function getTimestampPost()
     {
@@ -66,5 +81,16 @@ class Post extends Model
     public function getDislikes()
     {
         return $this->rating()->where('rating', 'dislike')->count();
+    }
+
+    public function getUserHasLiked(): bool
+    {
+        if ($this->rating()->where('rating', 'like')->where('user_id', auth()->user()->id)->count()) return true;
+        return false;
+    }
+    public function getUserHasDisliked(): bool
+    {
+        if ($this->rating()->where('rating', 'dislike')->where('user_id', auth()->user()->id)->count()) return true;
+        return false;
     }
 }

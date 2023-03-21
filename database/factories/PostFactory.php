@@ -25,7 +25,7 @@ class PostFactory extends Factory
         return [
             'title' => "Post sobre las palomas " . fake()->word(),
             'content' => fake()->text(200) . '<br><br><img src="' . $faker->imageUrl($width = 240, $height = 240, ['pigeon']) . '"><br>' . fake()->text(200),
-            'created_at' => now(),
+            'created_at' => fake()->dateTimeBetween('-1 month', 'now'),
             'updated_at' => now(),
             'user_id' => \App\Models\User::all()->random()->id,
         ];

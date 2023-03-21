@@ -78,4 +78,12 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->comment()->count();
     }
+    public function getNumberofLikes()
+    {
+        return $this->rating()->where('rating', "like")->count();
+    }
+    public function getNumberofDislikes()
+    {
+        return $this->rating()->where('rating', "dislike")->count();
+    }
 }

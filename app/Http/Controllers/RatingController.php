@@ -10,6 +10,13 @@ class RatingController extends Controller
 
     public function likePost(Request $request, $idpost)
     {
+        //check if user has already liked or disliked the post
+        $rating = Rating::where('user_id', $request->user()->id)->where('post_id', $idpost)->first();
+
+        if ($rating != null) {
+            $rating->delete();
+        }
+
         $rating = new Rating();
         $rating->user_id = $request->user()->id;
         $rating->post_id = $idpost;
@@ -23,6 +30,13 @@ class RatingController extends Controller
 
     public function dislikePost(Request $request, $idpost)
     {
+        //check if user has already liked or disliked the post
+        $rating = Rating::where('user_id', $request->user()->id)->where('post_id', $idpost)->first();
+
+        if ($rating != null) {
+            $rating->delete();
+        }
+
         $rating = new Rating();
         $rating->user_id = $request->user()->id;
         $rating->post_id = $idpost;

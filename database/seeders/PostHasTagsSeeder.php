@@ -2,11 +2,12 @@
 
 namespace Database\Seeders;
 
-use App\Models\Rating;
+use App\Models\PostHasTags;
+use Database\Factories\PostHasTagsFactory;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class RatingSeeder extends Seeder
+class PostHasTagsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,6 +16,6 @@ class RatingSeeder extends Seeder
      */
     public function run()
     {
-        // Rating::factory(300)->create();
+        PostHasTags::factory(25)->create();
     }
 }

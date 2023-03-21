@@ -21,6 +21,7 @@
             external_filemanager_path: "/filemanager/",
             images_upload_credentials: true,
             filemanager_title: "Gestor de archivos",
+            relative_urls: false,
             // file_picker_types: "file image media",
             external_plugins: {
                 responsivefilemanager: "/filemanager/plugin.min.6.0.js",

@@ -6,6 +6,7 @@ use App\Http\Controllers\PioController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RatingController;
 use App\Http\Controllers\UserProfileController;
+use App\Http\Controllers\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,30 +25,23 @@ use App\Http\Controllers\UserProfileController;
 
 Route::redirect('/', 'login');
 
-Route::middleware('auth')->group(function () {
+Route::middleware('auth', 'verified')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::post('rating/like/{id}', [RatingController::class, 'likePost'])->name('rating.likepost');
+    Route::post('rating/dislike/{id}', [RatingController::class, 'dislikePost'])->name('rating.dislikepost');
+    Route::post('comments/{id}', [CommentController::class, 'store'])->name('comments.store');
+    Route::delete('posts/{id}', [PostController::class, 'destroy'])->name('post.destroy');
 });
-
 
 Route::resource('userprofile', UserProfileController::class)
     ->only(['index', 'store', 'edit', 'update', 'show'])
     ->middleware(['auth', 'verified']);
 
-Route::post('rating/like/{id}', [RatingController::class, 'likePost'])->name('rating.likepost');
-
-Route::post('rating/dislike/{id}', [RatingController::class, 'dislikePost'])->name('rating.dislikepost');
-
-// Route::patch('rating/{id}', [RatingController::class, 'rating'])->name('rating.dislike');
-
-
-// Route::get('/user/profile/{username}', [UserProfileController::class, 'indexUser'])->name('user.profile');
-
 Route::resource('posts', PostController::class)
-    ->only(['index', 'store', 'edit', 'update', 'getTimestampPost'])
+    ->only(['index', 'show', 'store', 'edit', 'update', 'getTimestampPost'])
     ->middleware(['auth', 'verified']);
 
-Route::delete('posts/{id}', [PostController::class, 'destroy'])->name('post.destroy');
 
 require __DIR__ . '/auth.php';

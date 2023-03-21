@@ -1,5 +1,5 @@
 <div>
-    <script src="{{ asset('/tinymce/js/tinymce/tinymce.min.js') }}" referrerpolicy="origin"></script>
+    <script src="/tinymce/js/tinymce/tinymce.min.js" referrerpolicy="origin"></script>
     <input id="my-file" type="file" name="my-file" style="display: none;" onchange="" />
 
     <script>
